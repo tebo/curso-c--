@@ -2,7 +2,42 @@
 #include <iostream>
 #include <string>
 using namespace std;
+int energia;
+string nombre;
 
+
+int ramdomvida() {
+    return rand() % 10 + 1; // Genera un número aleatorio entre 1 y 10
+}
+
+bool estaViva() {
+    if (energia <= 0) {
+        // asscii art ataud 
+        cout << "    _______" << endl;
+        cout << "   /       \\" << endl;
+        cout << "  /         \\" << endl;
+        cout << "  |  R.I.P. |" << endl;
+        cout << "  |         |" << endl;            
+        cout << "Tu mascota ha fallecido." << endl;
+
+        // PREGUNTAR SI QUIERE REANIMARLA
+        char opcion;
+        cout << "¿Quieres reanimar a tu mascota? (s/n): ";
+        cin >> opcion;
+        if (opcion == 's' || opcion == 'S') {
+            energia = 10; // reanimar con energia inicial
+            cout << "¡Tu mascota ha sido reanimada!" << endl;
+            mostrarMascota();
+        } else {
+            // Si no quiere reanimar, el programa termina
+            cout << "¡Adiós!" << endl;
+            exit(0);
+        }
+
+        return false;
+    }   
+    return true;
+}
 void mostrarMascota()
 {
     cout << "    /\\_/\\" << endl;
@@ -10,6 +45,7 @@ void mostrarMascota()
     cout << "    > ^ <" << endl;
     cout << "   /|   |\\" << endl;
     cout << "  (_|   |_)" << endl;
+    cout << " " << nombre << " Energia " << energia << endl;
 }
 
 void mostrarMascotaFeliz()
@@ -19,6 +55,7 @@ void mostrarMascotaFeliz()
     cout << "    > ◡ <" << endl;
     cout << "   /|   |\\" << endl;
     cout << "  (_|   |_)" << endl;
+    cout << " " << nombre << " Energia " << energia << endl;
 }
 
 void mostrarMascotaHambre()
@@ -28,17 +65,21 @@ void mostrarMascotaHambre()
     cout << "    > ∧ <" << endl;
     cout << "   /|   |\\" << endl;
     cout << "  (_|   |_)" << endl;
+    cout << " " << nombre << " Energia " << energia << endl;
 }
 
 int nacerMascota()
 {
+    cout << "Ingresa el nombre de tu mascota: ";
+    cin >> nombre;
+    energia=10;
     cout << "¡Tu mascota ha nacido!" << endl;
     mostrarMascota();
-    return 10;
+    return 0;
 }
 int main()
 {
-    int energia = nacerMascota();
+    energia = nacerMascota();
 
     // menu de acciones para la mascota
     int opcion;
@@ -70,6 +111,12 @@ int main()
                 break;
             default:
                 cout << "Opción no válida. Intente de nuevo." << endl;
+        }
+        if (!estaViva()) {
+            break; // Si la mascota no está viva, salir del bucle
+        } else {
+            // Si la mascota está viva, mostrar su estado actual
+            energia = ramdomvida(); // Simula la vida de la mascota con un valor aleatorio
         }
     } while (opcion != 0);
     
