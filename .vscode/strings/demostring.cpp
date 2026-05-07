@@ -22,7 +22,7 @@ int main() {
 
     // Subcadena
     if (nombre.length() >= 3) {
-        string subcadena = nombre.substr(0, 3); // Obtiene los primeros 3 caracteres del nombre
+        string subcadena = nombre.substr(0, 2); // Obtiene los primeros 3 caracteres del nombre
         cout << "Los primeros 3 caracteres de tu nombre son: " << subcadena << endl;
     } else {
         cout << "Tu nombre es muy corto para obtener una subcadena de 3 caracteres." << endl;
