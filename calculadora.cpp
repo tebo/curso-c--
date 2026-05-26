@@ -30,9 +30,16 @@ double division (double a, double b)
 int main()
 {
     double num1, num2;
+    do { 
+        cin.clear(); // Limpiar el estado de error
+        //cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignorar la entrada inválida
+        cout << "Ingrese el primer número: ";
+        cin >> num1;
+        if (cin.fail()) {
+            cout << "Error: No es un número válido." << endl;
+        }
+    } while (cin.fail());
     
-    cout << "Ingrese el primer número: ";
-    cin >> num1;
     cout << "Ingrese el segundo número: ";
     cin >> num2;
     cout << "Suma: " << suma(num1,num2) << endl;
