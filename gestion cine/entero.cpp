@@ -21,5 +21,18 @@ int main() {
     }
 
     cout << "Número ingresado correctamente: " << numero << endl;
+
+    // Validacion ingreso de double
+    double numeroDecimal;
+    cout << "Ingresa un número decimal: ";
+    while (!(cin >> numeroDecimal)) {
+        cout << "Error: Ingresa un valor numérico decimal válido.\n";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Intenta de nuevo: ";
+    }
+    cout << "Número decimal ingresado correctamente: " << numeroDecimal << endl;
+    
+
     return 0;
 }
